@@ -1,0 +1,11 @@
+[Unit]
+Description=webcam streamer
+
+[Service]
+ExecStart=/opt/webcam_stream_connect/run-streamer
+Restart=always
+RestartSec=10
+User=pi
+
+[Install]
+WantedBy=multi-user.target

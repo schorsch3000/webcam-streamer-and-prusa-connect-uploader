@@ -1,0 +1,111 @@
+:root {
+    --color-primary: #fa6831;
+    --color-primary-faded: #fcd6c0;
+    --color-warning: #dc3545;
+    --neutral-100: #ffffff;
+    --neutral-150: #f1f1f1;
+    --neutral-200: #e5e5e5;
+    --neutral-300: #797979;
+    --neutral-400: #585858;
+    --neutral-500: #2a2a2a;
+    --neutral-600: #212529;
+    --neutral-900: #000000;
+    --color-text: var(--neutral-600);
+    --color-text-inverse: var(--neutral-100);
+    --background-body: var(--neutral-100);
+    --icon-primary: var(--color-primary);
+    --icon-secondary: var(--neutral-400);
+    --icon-tertiary: var(--neutral-600);
+    --toast-header-background: var(--neutral-100);
+    --toast-border: var(--neutral-200);
+    --toast-body-background: var(--neutral-100);
+    --current-printer-background: var(--neutral-500);
+    --current-printer-badge-background: var(--neutral-300);
+    --current-printer-badge-text: var(--neutral-100);
+    --card-item-background: var(--neutral-150);
+    --queue-view-border: var(--neutral-200);
+    --available-printers-background: var(--neutral-200);
+    --button-outline: var(--neutral-900);
+    --button-background-highlight: var(--neutral-500);
+    --table-row-background-hover: var(--neutral-200);
+    --breadcrumbs-text: var(--neutral-400);
+    --breadcrumbs-separator: var(--neutral-300);
+    --dropdown-background: var(--neutral-100);
+    --dropdown-border: var(--neutral-200);
+    --droparea-background: var(--background-body);
+    --job-background-hover: var(--neutral-200);
+    --table-header-background: var(--neutral-200);
+    --table-row-highlight: var(--neutral-150);
+    --color-secondary: var(--neutral-500);
+    --color-light: var(--neutral-300);
+    --color-navigation: var(--neutral-400);
+    --background-primary: var(--neutral-200);
+    --background-secondary: var(--neutral-150);
+    --border-primary: var(--neutral-900);
+    --border-secondary: var(--neutral-200);
+    --webcam-off-icon: url("off-black.png")
+}
+
+*[data-theme=DARK] {
+    --color-primary-faded: #9c401e;
+    --neutral-100: #000000;
+    --neutral-200: #1C1E21;
+    --neutral-300: #2a2a2a;
+    --neutral-400: #212529;
+    --neutral-500: #4e4e4e;
+    --neutral-600: #8f8f8f;
+    --neutral-700: #a2a2a2;
+    --neutral-800: #a7a7a7;
+    --neutral-900: #ffffff;
+    --color-secondary: var(--neutral-900);
+    --color-light: var(--neutral-700);
+    --color-navigation: var(--neutral-800);
+    --color-text: var(--neutral-900);
+    --color-text-inverse: var(--neutral-400);
+    --background-body: var(--neutral-200);
+    --background-primary: var(--neutral-300);
+    --background-secondary: var(--neutral-300);
+    --border-primary: var(--neutral-600);
+    --border-secondary: var(--neutral-500);
+    --icon-secondary: var(--neutral-900);
+    --button-background-highlight: var(--neutral-900);
+    --table-row-background-hover: var(--neutral-500);
+    --breadcrumbs-text: var(--neutral-800);
+    --breadcrumbs-separator: var(--neutral-500);
+    --dropdown-border: var(--neutral-500);
+    --droparea-background: var(--neutral-300);
+    --toast-header-background: var(--neutral-400);
+    --toast-body-background: var(--neutral-400);
+    --toast-border: var(--neutral-500);
+    --current-printer-background: var(--neutral-300);
+    --current-printer-badge-background: var(--neutral-500);
+    --current-printer-badge-text: var(--neutral-900);
+    --card-item-background: var(--neutral-300);
+    --queue-view-border: var(--neutral-500);
+    --available-printers-background: var(--neutral-500);
+    --job-background-hover: var(--neutral-400);
+    --table-header-background: var(--neutral-300);
+    --table-row-highlight: var(--neutral-500);
+    --webcam-off-icon: url("off-white.png")
+}
+
+
+
+body{
+    background-color: var(--background-body);
+    color: var(--color-text);
+    font-family: Atlas Grotesk Web,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+    ;
+}
+
+#video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-image: var(--webcam-off-icon);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-indent: -10000px;
+    border: 1px solid var(--border-primary);
+
+}

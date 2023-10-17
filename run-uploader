@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+cd "$(dirname "$0")" || exit 1
+. ./env
+
+
+test -f .fingerprint0 || uuid >.fingerprint0
+test -f .fingerprint1 || uuid >.fingerprint1
+
+FINGERPRINT0="${FINGERPRINT1:-$(<.fingerprint0)}"
+FINGERPRINT1="${FINGERPRINT2:-$(<.fingerprint1)}"
+
+{
+while true; do
+	date +"%Y-%m-%d %H:%M:%S"
+	echo "Taking snapshot 1"
+	sleep 5 &
+	sleep_5_pid=$!
+
+	rm -rf snap.jpg
+	wget -qO snap.jpg localhost:8080/?action=snapshot_0
+	echo took jpeg1
+
+	curl -s -X PUT "https://webcam.connect.prusa3d.com/c/snapshot" \
+		-H "accept: */*" \
+		-H "content-type: image/jpg" \
+		-H "FINGERPRINT: $FINGERPRINT0" \
+		-H "TOKEN: $TOKEN0" \
+		--data-binary "@snap.jpg" \
+		--no-progress-meter \
+		--compressed || exit 1
+
+	echo uploaded jpeg1
+
+	echo waiting for next timeframe
+	wait "$sleep_5_pid"
+	sleep 5 &
+	sleep_5_pid=$!
+	rm -rf snap.jpg
+
+		wget -qO snap.jpg localhost:8080/?action=snapshot_1
+  	echo took jpeg1
+
+  	curl -s -X PUT "https://webcam.connect.prusa3d.com/c/snapshot" \
+  		-H "accept: */*" \
+  		-H "content-type: image/jpg" \
+  		-H "FINGERPRINT: $FINGERPRINT1" \
+  		-H "TOKEN: $TOKEN1" \
+  		--data-binary "@snap.jpg" \
+  		--no-progress-meter \
+  		--compressed || exit 1
+
+	echo uploaded jpeg2
+
+	echo waiting for next timeframe
+	wait "$sleep_5_pid"
+
+	echo "Done"
+done
+
+} &>/dev/null

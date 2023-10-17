@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+cd "$(dirname "$0")"/mjpg-streamer/mjpg-streamer-experimental || exit 1
+./mjpg_streamer -i "input_uvc.so  -d /dev/video0 -r 1280x960" -i "input_uvc.so  -d /dev/video2 -r 1280x960" -o "output_http.so -w $PWD/../../www "

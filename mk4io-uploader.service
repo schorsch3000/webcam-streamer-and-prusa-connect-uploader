@@ -1,0 +1,11 @@
+[Unit]
+Description=webcam uploader
+
+[Service]
+ExecStart=/opt/webcam_stream_connect/run-uploader
+Restart=always
+RestartSec=10
+User=pi
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+set -xe
+cd "$(dirname "$0")"
+sudo apt install -y curl uuid git build-essential cmake libjpeg-dev gcc g++
+
+sudo service streamer stop || true &
+sudo service uploader stop || true &
+wait
+
+test -d mjpg-streamer/.git || {
+	rm -rf mjpg-streamer
+	git clone https://github.com/jacksonliam/mjpg-streamer.git
+}
+
+(
+	cd mjpg-streamer/mjpg-streamer-experimental
+	git pull
+	make
+)
+
+
+
+test -f ./wait-for || {
+	curl -o wait-for https://raw.githubusercontent.com/eficode/wait-for/master/wait-for
+
+}
+test -x ./wait-for || chmod +x ./wait-for
+
+sudo systemctl stop mk4io-streamer || true
+sudo cp mk4io-streamer.service /lib/systemd/system/
+
+sudo systemctl stop mk4io-uploader || true
+sudo cp mk4io-uploader.service /lib/systemd/system/
+
+sudo systemctl daemon-reload
+(
+sudo systemctl enable mk4io-streamer
+sudo systemctl start mk4io-streamer
+) &
+(
+sudo systemctl enable mk4io-uploader
+sudo systemctl start mk4io-uploader
+) &
+  wait
